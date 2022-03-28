@@ -1,0 +1,108 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "Atlas",
+        "description": "Aplicação de estudos",
+        "version": "1.0.0",
+        "contact":{
+            "email": "Douglasscriptore@gmail.com"
+        }
+    },
+    "paths":{
+        "/users":{
+            "post":{
+                "tags": "Users",
+                "summary": "Gerenciamento de usuarios",
+                "description": "Cria novo usuario",
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schame":{
+                                "type": "object",
+                                "properties":{
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "example":{
+                            "name": "Nome do usuario",
+                            "description": "Email do Usuario"
+                        }
+                    }
+                },
+                "responses":{
+                  "201": {
+                    "description": "Usuario Criado"
+                  },
+                  "400":{
+                    "description": "Email já existe"
+                  }
+                }
+            },
+            "get":{
+              "tags": "Users",
+              "summary":"Busca todos usuarios",
+              "description": "Busca todo usuario",
+              "response":{
+                "200":{
+                  "description": "Success",
+                  "content":{
+                    "application/json":{
+                      "schema":{
+                        "type": "array",
+                        "items":{
+                          "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "email": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+        "/users/{user_id}":{
+          "get":{
+            "tags": "Users",
+            "summary":"Busca perfil do usuario",
+            "description": "Busca perfil do usuario",
+            "parameters":{
+              "in": "path",
+              "name": "user_id",
+              "schema": {
+                "type": "string"
+              },
+              "required": "true",
+              "description": "UUID of the user",
+              "response":{
+                "200":{
+                  "description": "Success",
+                  "content":{
+                    "application/json":{
+
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+}
+      
+
+        
+    
